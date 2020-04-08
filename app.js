@@ -8,14 +8,17 @@ const orderRoutes = require("./API/routes/order");
 
 const mongoose = require("mongoose");
 
-mongoose.connect(
-	"mongodb+srv://flazzin:<" +
-		process.env.MONGO_ATLAS_PW +
-		">@cluster0-bo6ia.mongodb.net/test?retryWrites=true&w=majority",
-	{
-		useMongoClient: true,
-	}
-);
+mongoose
+	.connect(
+		"mongodb+srv://flazzin:qinger123@cluster0-bo6ia.mongodb.net/test?retryWrites=true&w=majority",
+		{ useNewUrlParser: true, useUnifiedTopology: true }
+	)
+	.then(() => {
+		console.log("connecte");
+	})
+	.catch((error) => {
+		console.log("error");
+	});
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
